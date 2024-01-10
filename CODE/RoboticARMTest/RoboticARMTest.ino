@@ -19,19 +19,25 @@ void setup()
 
 void loop() 
 {
-   for(int i=0;i<6;i++)
-   {
-     S[i].write(0);
-   }
-   delay(1000);
-   for(int i=0;i<6;i++)
-   {
-     S[i].write(90);
-   }
-   delay(1000);
-   for(int i=0;i<6;i++)
-   {
-     S[i].write(180);
-   }
-   delay(1000);
+  //  for(int i=0;i<6;i++)
+  //  {
+  //    S[i].write(0);
+  //  }
+  //  delay(1000);
+  //  for(int i=0;i<6;i++)
+  //  {
+  //    S[i].write(90);
+  //  }
+  //  delay(1000);
+  //  for(int i=0;i<6;i++)
+  //  {
+  //    S[i].write(180);
+  //  }
+  //  delay(1000);
+  S[1].write(0);
+  Serial.println("Moving to 0");
+  delay(5000);
+  S[1].write(90);
+  Serial.println("Moving to 90");
+  delay(5000);
 }
