@@ -1,0 +1,3 @@
+Motor 0: 180-open
+Motor 1: 0 -180
+Motor 2: 0 -180
