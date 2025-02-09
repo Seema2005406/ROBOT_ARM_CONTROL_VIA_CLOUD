@@ -28,6 +28,7 @@ set IOTHUB_CONNECTION_STRING="your-iot-hub-connection-string"
 ```bash
 export IOTHUB_CONNECTION_STRING="your-iot-hub-connection-string"
 ```
+For github you can add it as repo Secrets
 
 ### 3️⃣ **Install Dependencies**
 ```bash
@@ -41,7 +42,7 @@ python app.py
 
 ### 5️⃣ **Start the Device Listener** (On the Robot's Device)
 ```bash
-python device_listener.py
+python device_side_listen.py
 ```
 
 ## 📡 How It Works
