@@ -82,7 +82,7 @@ python device_side_listen.py
 Feel free to fork this repo and submit a pull request if you have improvements!
 
 ## 📜 License
-This project is licensed under the MIT License.
+This project is licensed under the GPL V3 License.
 
 ---
 💡 **Now you can remotely control your robotic arm with Azure IoT and a web interface!** 🤖🎮
