@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotic Arm Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .toggle-btn { background: #007BFF; color: white; }
+        .status-btn { background: #28A745; color: white; }
+        .rotate-input { width: 80%; padding: 8px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Robotic Arm Control</h2>
+        <!-- Buttons to control the arm up/down and open/close -->
+        <button class="toggle-btn" onclick="sendCommand('AU')">Arm Up</button>
+        <button class="toggle-btn" onclick="sendCommand('AD')">Arm Down</button>
+        <button class="toggle-btn" onclick="sendCommand('AC')">Arm Close</button>
+        <button class="toggle-btn" onclick="sendCommand('AO')">Arm Open</button>
+
+        <!-- Input and button to control rotation -->
+        <input type="number" class="rotate-input" id="angle" placeholder="Enter Rotation Angle">
+        <button class="toggle-btn" onclick="rotateArm()">Rotate Arm</button>
+
+        <!-- Button to get the arm status -->
+        <button class="status-btn" onclick="getStatus()">Get Status</button>
+    </div>
+
+    <script>
+        // Function to send toggle commands like "AU", "AD", "AC", "AO"
+        function sendCommand(action) {
+            fetch('/toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: action })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Command sent:', data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Function to send the rotation command with the angle
+        function rotateArm() {
+            let angle = document.getElementById('angle').value;
+            if (angle) {
+                fetch('/rotate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ angle: angle })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Rotation command sent:', data);
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                alert('Please enter a rotation angle.');
+            }
+        }
+
+        // Function to get the status of the robotic arm
+        function getStatus() {
+            fetch('/get_status')
+                .then(response => response.json())
+                .then(data => {
+                    alert('Status: ' + JSON.stringify(data));
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
