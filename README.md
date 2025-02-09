@@ -10,13 +10,28 @@ This project enables remote control of a robotic arm using **Azure IoT Hub** and
 - 🔄 **Rotation Support**: Specify angles for precise movements.
 
 ## 🛠️ Setup & Installation
-### 1️⃣ **Clone the Repository**
+### 1️⃣ **Create an Azure IoT Hub**
+1. Log in to the [Azure Portal](https://portal.azure.com/).
+2. Search for **IoT Hub** and click **Create**.
+3. Select your **Subscription** and **Resource Group**.
+4. Choose a **Region** and a unique **IoT Hub name**.
+5. Select the **Pricing Tier** (e.g., Free for testing, Standard for production).
+6. Click **Review + Create**, then **Create**.
+
+### 2️⃣ **Register a Device in IoT Hub**
+1. Navigate to your IoT Hub in the Azure Portal.
+2. Under **Device Management**, select **Devices**.
+3. Click **+ New Device** and enter a unique device ID (e.g., `robotic-arm`).
+4. Choose **Authentication type** as `Symmetric key` and click **Save**.
+5. Copy the **Primary Connection String** (this will be used in the project).
+
+### 3️⃣ **Clone the Repository**
 ```bash
-git clone https://github.com/your-username/robotic-arm-control.git
-cd robotic-arm-control
+git clone https://github.com/Seema2005406/ROBOT_ARM_CONTROL_VIA_CLOUD.git
+cd ROBOT_ARM_CONTROL_VIA_CLOUD
 ```
 
-### 2️⃣ **Set Up Environment Variables**
+### 4️⃣ **Set Up Environment Variables**
 Since the IoT Hub connection string is sensitive, store it securely as an environment variable instead of hardcoding it.
 
 #### 🔹 **On Windows (Command Prompt)**
@@ -28,19 +43,18 @@ set IOTHUB_CONNECTION_STRING="your-iot-hub-connection-string"
 ```bash
 export IOTHUB_CONNECTION_STRING="your-iot-hub-connection-string"
 ```
-For github you can add it as repo Secrets
 
-### 3️⃣ **Install Dependencies**
+### 5️⃣ **Install Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ **Run the Flask App**
+### 6️⃣ **Run the Flask App**
 ```bash
 python app.py
 ```
 
-### 5️⃣ **Start the Device Listener** (On the Robot's Device)
+### 7️⃣ **Start the Device Listener** (On the Robot's Device)
 ```bash
 python device_side_listen.py
 ```
@@ -69,6 +83,7 @@ python device_side_listen.py
 | `AO` | Open gripper |
 | `R{angle}` | Rotate by specified angle |
 | `G` | Get current status |
+
 
 ## 🔗 Resources
 - [Azure IoT Hub Documentation](https://docs.microsoft.com/en-us/azure/iot-hub/)
